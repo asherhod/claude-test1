@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acme Co. — Solutions That Work</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="#" class="logo">Acme Co.</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Grow your business with Acme Co.</h1>
+        <p>We help small businesses launch faster, work smarter, and scale without the growing pains.</p>
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <h2>Why Choose Us</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Fast Setup</h3>
+          <p>Get up and running in days, not months, with our streamlined onboarding.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Reliable Support</h3>
+          <p>Our team is here around the clock to help you solve problems quickly.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Built to Scale</h3>
+          <p>Whether you're a team of one or one hundred, our platform grows with you.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial-grid">
+        <blockquote>
+          <p>"Acme Co. completely changed how we run our business. Couldn't be happier."</p>
+          <cite>— Jamie Rivera, Owner, Rivera Bakes</cite>
+        </blockquote>
+        <blockquote>
+          <p>"The support team is fantastic and the platform just works."</p>
+          <cite>— Sam Lee, Founder, Lee Consulting</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Get In Touch</h2>
+      <form id="contact-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+      <p id="form-status" class="form-status" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Acme Co. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
