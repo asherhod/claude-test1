@@ -1,0 +1,81 @@
+/* Shared pill-button styles, used by Header/Home/Shop/ProductCard etc.
+   Matches the design system's Button component usage in the prototype
+   (color=ember/teal, variant=secondary/tertiary, size sm/md/lg, raised). */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+  transition: box-shadow 150ms ease, background-color 150ms ease, color 150ms ease;
+  white-space: nowrap;
+}
+
+.btn-sm {
+  height: 33px;
+  padding: 0 var(--sp-4);
+  font-size: 14px;
+}
+
+.btn-md {
+  height: 40px;
+  padding: 0 var(--sp-5);
+  font-size: 15px;
+}
+
+.btn-lg {
+  height: 48px;
+  padding: 0 var(--sp-6);
+  font-size: 16px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-primary {
+  background: var(--ember);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--ember-deep);
+}
+
+.btn-primary.btn-raised {
+  box-shadow: var(--shadow-cta);
+}
+
+/* Used on dark (umber/ember) backgrounds -- hero, story strip, about CTA */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.btn-tertiary {
+  background: transparent;
+  color: var(--text-tertiary);
+  text-decoration: underline;
+  padding: 0;
+  height: auto;
+  font-weight: var(--fw-medium);
+  font-size: 14px;
+}
+
+.btn-tertiary:hover {
+  color: var(--ember);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

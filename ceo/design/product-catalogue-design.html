@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Mangalist — Product Catalogue: Architecture &amp; Design</title>
+<style>
+  @page { margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  html, body {
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 20px 60px 20px;
+  }
+  h1, h2, h3, h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0b3d5c;
+    line-height: 1.25;
+  }
+  h1 { font-size: 22pt; margin-bottom: 4px; }
+  h2 {
+    font-size: 16pt;
+    margin-top: 34px;
+    border-bottom: 2px solid #0b3d5c;
+    padding-bottom: 4px;
+  }
+  h3 { font-size: 13pt; margin-top: 22px; color: #1a1a1a; }
+  h4 { font-size: 11.5pt; margin-top: 16px; color: #333; }
+  p { margin: 8px 0; }
+  .subtitle { font-size: 11pt; color: #444; margin-top: 0; }
+  .meta-box {
+    background: #f3f6f8;
+    border: 1px solid #c8d4dc;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 14px 0 6px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10.5pt;
+  }
+  .meta-box table { border: none; width: 100%; }
+  .meta-box td { border: none; padding: 2px 8px 2px 0; vertical-align: top; }
+  .meta-box td.label { font-weight: bold; width: 130px; color: #0b3d5c; }
+  .scope-badge {
+    display: inline-block;
+    background: #0b3d5c;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin: 2px 6px 2px 0;
+  }
+  .scope-out {
+    background: #8a1c1c;
+  }
+  .flag {
+    background: #fff6e0;
+    border: 1px solid #d9b45a;
+    border-left: 6px solid #b9862a;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 11pt;
+  }
+  .flag strong.flag-label {
+    display: inline-block;
+    background: #b9862a;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9.5pt;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .cost {
+    background: #fdecec;
+    border: 1px solid #d98a8a;
+    border-left: 6px solid #a12b2b;
+  }
+  .cost strong.flag-label { background: #a12b2b; }
+  table.data {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 10.5pt;
+    margin: 10px 0 18px 0;
+  }
+  table.data caption {
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 11pt;
+    color: #0b3d5c;
+    margin-bottom: 4px;
+  }
+  table.data th, table.data td {
+    border: 1px solid #b9c6ce;
+    padding: 5px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.data th {
+    background: #e7eef2;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  code, .code {
+    font-family: "Courier New", Courier, monospace;
+    background: #f0f0f0;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 10pt;
+  }
+  pre.code-block {
+    font-family: "Courier New", Courier, monospace;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 9.5pt;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+  ul, ol { margin: 6px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .section { page-break-inside: avoid; }
+  .diagram-wrap {
+    page-break-inside: avoid;
+    border: 1px solid #c8d4dc;
+    border-radius: 6px;
+    background: #fbfcfd;
+    padding: 10px;
+    margin: 14px 0;
+    text-align: center;
+  }
+  .diagram-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    color: #444;
+    margin-top: 6px;
+    text-align: left;
+  }
+  .signoff-table td:first-child { font-weight: bold; width: 26px; text-align: center; }
+  .footer-note {
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 1px solid #c8d4dc;
+    font-size: 9.5pt;
+    color: #666;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  @media print {
+    .section, .diagram-wrap, table.data { page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Mangalist — Product Catalogue: Architecture &amp; Design</h1>
+<p class="subtitle">Display / browsing catalogue — design deliverable, no implementation performed by this document.</p>
+
+<div class="meta-box">
+  <table>
+    <tr><td class="label">Date</td><td>2026-07-05</td></tr>
+    <tr><td class="label">Authors</td><td>Solution Architect (this document) + DBA (data model, reproduced in full below) — both CIO-directed, reporting to the CIO</td></tr>
+    <tr><td class="label">Status</td><td>DESIGN / RECOMMENDATION ONLY. Nothing in this document is approved, implemented, migrated, or deployed. All architecture deviations and any cost implications are explicitly flagged and require CIO → CEO → parent sign-off before Dev/DBA implement anything.</td></tr>
+    <tr><td class="label">In scope</td>
+      <td>
+        <span class="scope-badge">Categories &amp; browsing</span>
+        <span class="scope-badge">Search &amp; filtering</span>
+        <span class="scope-badge">Product detail pages</span>
+        <span class="scope-badge">Images</span>
+        <span class="scope-badge">Variants (size/color/model)</span>
+        <span class="scope-badge">Stock / availability display</span>
+      </td>
+    </tr>
+    <tr><td class="label">Out of scope</td>
+      <td>
+        <span class="scope-badge scope-out">Cart</span>
+        <span class="scope-badge scope-out">Checkout</span>
+        <span class="scope-badge scope-out">Payment</span>
+        <span class="scope-badge scope-out">Order flow</span>
+        — all deferred per <code>ceo/strategy.md</code>; not designed here.
+      </td>
+    </tr>
+  </table>
+</div>
+
+<h2>1. Overview</h2>
+<p>
+This document defines the technical design for a display/browsing-only product catalogue for Mangalist, at the
+business's actual current scale: two brands at launch (Char-Broil, Napoleon), roughly a couple of dozen SKUs,
+a two-person operations team (the twins), no orders yet, and no meaningful site traffic yet. The design
+deliberately does not build for hypothetical future scale — every place this document adds structure ahead of
+strictly proven need is called out explicitly, matching the DBA's own proportionality discipline in the schema
+design below.
+</p>
+<p>
+The catalogue builds on the existing self-hosted Supabase stack (Postgres + PostgREST + RLS + Studio, run via
+Docker — locally today, with AWS EC2 as the already-agreed future deploy target) and the existing plain
+HTML/CSS/JS frontend (no framework, no build step, Hebrew/RTL). Architecture for this specific catalogue was
+explicitly reopened for reconsideration by the parent; this document evaluates alternatives and recommends,
+in almost every dimension, staying close to the existing pattern — with one genuine decision point (SEO /
+link-preview rendering for product pages) presented as an explicit either/or for the CIO/parent, not decided here.
+</p>
+
+<h2>2. Proposed Architecture</h2>
+
+<h3>2.1 Frontend rendering &amp; serving approach</h3>
+<p><strong>Recommendation: keep the existing pattern — plain HTML/CSS/JS, client-side fetch from PostgREST, no framework, no build step.</strong></p>
+<p>
+Concretely: two new plain HTML pages, styled with the existing <code>styles.css</code> theme, sit alongside
+<code>index.html</code>:
+</p>
+<ul>
+  <li><code>catalog.html</code> — browse/filter/search listing page. State (selected category, brand, price
+      range, stock filter, search text, sort order) lives in the URL query string
+      (e.g. <code>catalog.html?category=gas-grills&amp;brand=char-broil&amp;stock=in_stock&amp;q=...</code>), so
+      results are linkable/shareable and the page needs no server-side routing.</li>
+  <li><code>product.html</code> — single product detail page, driven by an id in the query string
+      (e.g. <code>product.html?id=&lt;uuid&gt;</code> — see §2.2 on why id/sku rather than a Hebrew slug for now).</li>
+</ul>
+<p>
+Both pages use vanilla JS plus the <code>@supabase/supabase-js</code> CDN client already wired into
+<code>index.html</code> for the leads form, calling PostgREST directly with the public anon key. This is safe
+because RLS already restricts anon reads to <code>published = true</code> rows (same pattern as the existing
+<code>products</code> table policy) — no new trust boundary is introduced.
+</p>
+<table class="data">
+  <caption>Rendering options considered</caption>
+  <thead><tr><th>Option</th><th>Description</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>A. Client-side fetch (recommended)</td>
+      <td>Static HTML shell + vanilla JS fetches from PostgREST at page load, renders into the DOM. Zero new
+          tooling, identical deploy story to today (static files + self-hosted Supabase).</td>
+      <td><strong>Recommended default.</strong> Proportionate to current traffic (near zero) and team size.</td>
+    </tr>
+    <tr>
+      <td>B. Build-time static pre-rendering</td>
+      <td>A small Node.js generator script (not a framework — no bundler, no client hydration library) queries
+          Postgres/PostgREST at build time and emits one static HTML file per published product, with real
+          <code>&lt;title&gt;</code>/meta description/Open Graph tags baked in, run manually or on a schedule
+          whenever the catalogue changes.</td>
+      <td><strong>Not recommended today — documented for later.</strong> See flag below. Real benefit: correct
+          Google indexing and rich WhatsApp/Facebook link previews for individual product pages (client-side-only
+          rendering means crawlers that don't execute JS — notably link-preview bots — see an empty page).
+          Real cost: introduces a build step where none exists today, and a "someone must remember to
+          regenerate" operational step.</td>
+    </tr>
+    <tr>
+      <td>C. Frontend framework (Next.js / Astro / Gatsby, SSR or SSG)</td>
+      <td>Full framework with routing, data-fetching conventions, build pipeline.</td>
+      <td><strong>Rejected as over-engineering</strong> at this scale — a couple dozen SKUs, two brands, no
+          orders, minimal traffic. Would add a real ongoing maintenance/learning-curve cost with no proportionate
+          benefit over Option A or B.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="flag">
+  <strong class="flag-label">RECOMMENDATION REQUIRING SIGN-OFF</strong>
+  This design recommends <strong>Option A</strong> (no build step, matching the existing "no framework, no
+  build step" principle) as the default for now, since there is no organic-search or social-sharing traffic yet
+  to justify the extra moving part. <strong>Option B (build-time pre-rendering) is flagged as a genuine future
+  decision point</strong>, not a rejected idea — once Marketing has an active plan to drive traffic to specific
+  product links (SEO, WhatsApp/Facebook sharing), the CIO/parent should revisit whether the SEO/link-preview
+  benefit now justifies the small added build step. No cost is attached to either option (no paid service), but
+  Option B is a deviation from the current "zero build step" architecture and needs explicit sign-off before
+  Dev implements it, whenever it is revisited.
+</div>
+
+<h3>2.2 URL / routing scheme (partially resolves DBA's Hebrew-slug open question)</h3>
+<p>
+The DBA flagged that "slug" is an English SEO convention that doesn't map cleanly onto Hebrew product names
+(open question 1, §4). This design proposes a split resolution, since brands/categories and products have very
+different slug-ability:
+</p>
+<ul>
+  <li><strong>Brands and categories</strong> — small, curated, controlled lists (2 brands, a handful of
+      categories). Recommend the twins/CIO assign real transliterated/English slugs (e.g. <code>char-broil</code>,
+      <code>napoleon</code>, <code>gas-grills</code>, <code>accessories</code>) — low effort, done once, gives
+      clean readable category/brand URLs today.</li>
+  <li><strong>Products and variants</strong> — dozens of Hebrew product names with no obvious transliteration
+      convention yet. Recommend routing by <code>id</code> (or <code>sku</code> for variants) for now
+      (<code>product.html?id=...</code>), leaving the <code>products.slug</code> column null/unused until
+      Marketing settles a Hebrew product-URL convention. This defers a real decision to the people who own site
+      copy/positioning, rather than the Solution Architect guessing at it.</li>
+</ul>
+
+<h3>2.3 Search &amp; filtering — how it's served to the browser</h3>
+<p>
+Per the DBA's recommendation, search and faceted filtering are both served directly by Postgres — no separate
+search service. The catalogue page's filters map directly onto PostgREST query parameters against the
+<code>products</code>/<code>product_variants</code> views:
+</p>
+<pre class="code-block">GET /rest/v1/products?select=id,name,slug,specs,brand:brands(name,slug),category:categories(name,slug),
+    product_variants(id,sku,variant_name,price_ils,stock_status)
+    &amp;category_id=eq.&lt;uuid&gt;
+    &amp;brand_id=eq.&lt;uuid&gt;
+    &amp;product_variants.stock_status=eq.in_stock
+    &amp;fts_column=fts(simple).מנגל
+    &amp;published=eq.true
+    &amp;order=name.asc</pre>
+<p>
+Free-text search uses the DBA's generated <code>tsvector</code> column (<code>'simple'</code> config — Hebrew
+does not benefit from English stemming) via PostgREST's <code>fts</code> filter, exactly as recommended by the
+DBA. Facet filters (category, brand, price range, stock status) are plain equality/range filters using the
+existing indexes (category_id, brand_id, price_ils, stock_status). Facet <em>counts</em> (e.g. "Char-Broil (5)"
+badges next to filter checkboxes) are computed client-side from the already-fetched result set at this catalogue
+size — no materialized view or extra aggregation query is needed on day one, per the DBA's note that a
+materialized view is a cheap future addition only if heavy joined-aggregation queries become necessary later.
+</p>
+
+<h3>2.4 Product variants &amp; stock/availability display</h3>
+<ul>
+  <li>A product with exactly one variant (the common case for single-SKU accessories) shows no variant
+      picker — price/stock come straight from that one <code>product_variants</code> row.</li>
+  <li>A product with &gt;1 variant (e.g. a grill available in two sizes, or an accessory in multiple colors)
+      shows a simple picker (dropdown or pill buttons) built from <code>variant_name</code>; selecting a variant
+      updates the displayed price, stock badge, dimensions, and swaps in variant-specific images where present
+      (<code>product_images.variant_id</code>), falling back to the product-level gallery otherwise.</li>
+  <li>Stock status badge, mapped from the DBA's <code>stock_status</code> enum to Hebrew UI labels:</li>
+</ul>
+<table class="data">
+  <caption>Stock status → UI treatment</caption>
+  <thead><tr><th>stock_status value</th><th>Suggested Hebrew label</th><th>Suggested color</th></tr></thead>
+  <tbody>
+    <tr><td><code>in_stock</code></td><td>זמין להזמנה</td><td>Green</td></tr>
+    <tr><td><code>out_of_stock</code></td><td>אזל מהמלאי</td><td>Gray/red</td></tr>
+    <tr><td><code>preorder</code></td><td>בהזמנה מראש</td><td>Amber</td></tr>
+    <tr><td><code>discontinued</code></td><td>הופסק</td><td>Dark red</td></tr>
+    <tr><td><code>unknown</code> (default)</td><td>זמינות לפי בירור</td><td>Neutral gray</td></tr>
+  </tbody>
+</table>
+<div class="flag">
+  <strong class="flag-label">NOTE FOR MARKETING (not this document's call)</strong>
+  Per <code>ceo/strategy.md</code>, the fulfillment model under consideration is order-on-demand from suppliers,
+  not held warehouse inventory. "זמין להזמנה" (available to order) is suggested above instead of a literal
+  "in stock" translation so the copy doesn't imply warehouse stock that doesn't exist. Final wording is
+  Marketing's call, not decided here.
+</div>
+<p>
+Price display: if <code>price_ils</code> is null (expected at launch — no real ILS pricing exists yet per the
+DBA schema), show "מחיר לפי פנייה" (price on request) linking into the existing contact form, consistent with
+the site's current contact-driven approach rather than inventing a placeholder price.
+</p>
+
+<h3>2.5 Images — handling &amp; serving</h3>
+<p><strong>Recommendation: use the Storage service already included in the self-hosted Supabase stack</strong>
+(Postgres + PostgREST + Studio + Auth + <strong>Storage</strong> — confirmed already part of what
+<code>supabase start</code> brings up per <code>supabase-local/README.md</code>). A single public-read
+<code>product-images</code> bucket, with upload restricted to the postgres/service role (same bypass-RLS pattern
+already used for table writes via Studio). Twins/CIO upload product photos directly through Studio's
+Storage UI (drag-and-drop); the resulting public URL is stored in <code>product_images.url</code>.
+</p>
+<table class="data">
+  <caption>Image storage options considered</caption>
+  <thead><tr><th>Option</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Supabase Storage (self-hosted, existing stack)</td>
+      <td><strong>Recommended.</strong> No new component, no new cost, self-serve for the twins (matches the
+          "Studio as CMS" approach already committed to for catalog rows), same Docker-to-EC2 deployment path
+          as everything else.</td>
+    </tr>
+    <tr>
+      <td>Static image files committed to the git repo</td>
+      <td>Rejected — dozens of product photos bloat the repo over time and require a developer to add every
+          image; doesn't give the twins self-serve upload.</td>
+    </tr>
+    <tr>
+      <td>External image CDN (Cloudinary, imgix, etc.)</td>
+      <td>Rejected for now — a new paid service with no proportionate benefit at near-zero current traffic.
+          Flagged as a possible future revisit only if page-weight/performance becomes a real problem.</td>
+    </tr>
+  </tbody>
+</table>
+<div class="flag">
+  <strong class="flag-label">OPERATIONAL NOTE, NOT A COST</strong>
+  The self-hosted stack has no automatic image optimization/transformation or CDN edge caching. Recommend the
+  twins/Marketing resize photos to a reasonable web size (e.g. ~1200px wide) before uploading, as a manual
+  practice — not a system requirement, no tooling to build.
+</div>
+<div class="flag cost">
+  <strong class="flag-label">COST FLAG (informational only, no new spend)</strong>
+  Using Supabase Storage introduces no new paid service — it is already part of the self-hosted stack the
+  parent previously approved standing up locally. The only cost implication is indirect: stored images add to
+  the eventual AWS EC2 disk usage, which is already accounted for in the CIO's existing 60–150 NIS/month
+  estimate for the single-instance deploy. Flagging for completeness, not because it's a new decision.
+</div>
+
+<h3>2.6 Deployment topology</h3>
+<p>
+Unchanged from the CIO's existing Phase 1 plan in <code>ceo/strategy.md</code>: the same self-hosted Supabase
+docker-compose stack (now with more tables and the Storage bucket in use) runs locally via Docker Desktop today,
+and is deployed as the same compose file to a single AWS EC2 instance later. The catalogue frontend pages
+(<code>catalog.html</code>, <code>product.html</code>) are additional static files served the same way
+<code>index.html</code> is today — no new hosting component, no new topology decision introduced by this
+catalogue design.
+</p>
+
+<div class="diagram-wrap section">
+<svg viewBox="0 0 900 560" width="900" height="560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="System architecture diagram">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0b3d5c"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill: #eaf2f7; stroke: #0b3d5c; stroke-width: 1.5; }
+    .box2 { fill: #f7f2e2; stroke: #8a6d1c; stroke-width: 1.5; }
+    .lbl { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #10222c; }
+    .lbl-sm { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #33424a; }
+    .lbl-title { font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; fill: #0b3d5c; }
+    .edge { stroke: #0b3d5c; stroke-width: 1.6; fill: none; }
+    .edge-lbl { font-family: Arial, Helvetica, sans-serif; font-size: 10.5px; fill: #444; }
+    .dash { stroke-dasharray: 6,4; }
+  </style>
+
+  <!-- Browser box -->
+  <rect class="box" x="40" y="20" width="820" height="70" rx="8"/>
+  <text class="lbl-title" x="450" y="45" text-anchor="middle">Browser — Frontend</text>
+  <text class="lbl" x="450" y="66" text-anchor="middle">Plain HTML/CSS/JS: catalog.html, product.html — vanilla JS + supabase-js client (CDN, anon key)</text>
+  <text class="lbl-sm" x="450" y="82" text-anchor="middle">No framework, no build step (recommended default, §2.1)</text>
+
+  <!-- Docker/stack container -->
+  <rect x="30" y="120" width="840" height="360" rx="8" fill="none" stroke="#8a6d1c" stroke-width="1.5" stroke-dasharray="7,5"/>
+  <text class="lbl-sm" x="45" y="140" fill="#8a6d1c" font-weight="bold">Self-hosted Supabase stack — Docker (local today → single AWS EC2 instance later, unchanged topology)</text>
+
+  <!-- PostgREST -->
+  <rect class="box" x="60" y="160" width="250" height="80" rx="6"/>
+  <text class="lbl-title" x="185" y="184" text-anchor="middle">PostgREST API</text>
+  <text class="lbl-sm" x="185" y="202" text-anchor="middle">Auto-generated REST</text>
+  <text class="lbl-sm" x="185" y="217" text-anchor="middle">Enforces RLS (published=true)</text>
+  <text class="lbl-sm" x="185" y="232" text-anchor="middle">Search/filter via query params + FTS</text>
+
+  <!-- Storage API -->
+  <rect class="box" x="330" y="160" width="240" height="80" rx="6"/>
+  <text class="lbl-title" x="450" y="184" text-anchor="middle">Storage API</text>
+  <text class="lbl-sm" x="450" y="202" text-anchor="middle">product-images bucket</text>
+  <text class="lbl-sm" x="450" y="217" text-anchor="middle">Public read, restricted upload</text>
+  <text class="lbl-sm" x="450" y="232" text-anchor="middle">Serves image files (§2.5)</text>
+
+  <!-- Studio -->
+  <rect class="box2" x="590" y="160" width="260" height="80" rx="6"/>
+  <text class="lbl-title" x="720" y="184" text-anchor="middle" fill="#8a6d1c">Studio (admin UI)</text>
+  <text class="lbl-sm" x="720" y="202" text-anchor="middle">Twins/CIO manage catalog rows</text>
+  <text class="lbl-sm" x="720" y="217" text-anchor="middle">+ upload images</text>
+  <text class="lbl-sm" x="720" y="232" text-anchor="middle">Uses postgres role — bypasses RLS</text>
+
+  <!-- Postgres -->
+  <rect class="box" x="180" y="300" width="540" height="90" rx="6"/>
+  <text class="lbl-title" x="450" y="325" text-anchor="middle">Postgres</text>
+  <text class="lbl-sm" x="450" y="344" text-anchor="middle">brands · categories · products · product_variants · product_images · leads</text>
+  <text class="lbl-sm" x="450" y="360" text-anchor="middle">RLS policies (published=true) + generated tsvector / GIN full-text-search index</text>
+  <text class="lbl-sm" x="450" y="377" text-anchor="middle">Indexes: brand_id, category_id, price_ils, stock_status, specs (GIN)</text>
+
+  <!-- Image volume -->
+  <rect class="box" x="330" y="420" width="240" height="50" rx="6"/>
+  <text class="lbl-sm" x="450" y="440" text-anchor="middle" font-weight="bold">Image files</text>
+  <text class="lbl-sm" x="450" y="456" text-anchor="middle">Docker volume today (S3-compatible later, optional)</text>
+
+  <!-- Arrows -->
+  <path class="edge" marker-end="url(#arrow)" marker-start="url(#arrow)" d="M300,90 L185,160"/>
+  <text class="edge-lbl" x="200" y="120">GET /rest/v1/products?filters&amp;fts&amp;select — JSON rows</text>
+
+  <path class="edge" marker-end="url(#arrow)" marker-start="url(#arrow)" d="M550,90 L450,160"/>
+  <text class="edge-lbl" x="500" y="130">GET image URL — file bytes</text>
+
+  <path class="edge" marker-end="url(#arrow)" marker-start="url(#arrow)" d="M240,240 L330,300"/>
+  <text class="edge-lbl" x="200" y="275">SQL SELECT, RLS-filtered</text>
+
+  <path class="edge" marker-end="url(#arrow)" d="M450,240 L450,420"/>
+  <text class="edge-lbl" x="460" y="410">file bytes</text>
+
+  <path class="edge" marker-end="url(#arrow)" d="M700,240 L500,300"/>
+  <text class="edge-lbl" x="640" y="278">INSERT/UPDATE (bypasses RLS)</text>
+
+  <path class="edge" marker-end="url(#arrow)" d="M690,240 L470,175" />
+  <text class="edge-lbl" x="600" y="150">upload files</text>
+</svg>
+<p class="diagram-caption">Diagram (a): system architecture and data flow — from browser request through PostgREST/Storage to Postgres and back, plus Studio's admin path used by the twins/CIO to manage catalog content and images.</p>
+</div>
+
+<h2>3. Data Model (DBA design, reproduced in full)</h2>
+<p>
+The following is the DBA's authoritative catalog schema design, reproduced here so this document is
+self-contained for the CIO/parent. This Solution Architect design builds directly on it without alteration —
+see §2 above for how the frontend/API layer consumes it.
+</p>
+
+<h3>3.1 Entities</h3>
+<table class="data">
+  <caption>brands</caption>
+  <tbody>
+    <tr><td><code>id</code></td><td>uuid, PK</td></tr>
+    <tr><td><code>name</code></td><td>text, unique, not null</td></tr>
+    <tr><td><code>slug</code></td><td>text, unique, not null</td></tr>
+    <tr><td><code>logo_url</code></td><td>text, nullable</td></tr>
+    <tr><td><code>published</code></td><td>boolean, default false</td></tr>
+    <tr><td><code>created_at / updated_at</code></td><td>timestamps</td></tr>
+  </tbody>
+</table>
+
+<table class="data">
+  <caption>categories</caption>
+  <tbody>
+    <tr><td><code>id</code></td><td>uuid, PK</td></tr>
+    <tr><td><code>parent_id</code></td><td>uuid, FK → categories(id), on delete restrict, nullable — self-reference tree; null = top-level (e.g. "Grills"/"Accessories")</td></tr>
+    <tr><td><code>name</code></td><td>text, not null</td></tr>
+    <tr><td><code>slug</code></td><td>text, unique, not null</td></tr>
+    <tr><td><code>sort_order</code></td><td>int, default 0</td></tr>
+    <tr><td><code>published</code></td><td>boolean, default false</td></tr>
+    <tr><td><code>created_at / updated_at</code></td><td>timestamps</td></tr>
+    <tr><td>Check constraint</td><td><code>parent_id is null or parent_id &lt;&gt; id</code> — shallow cycle guard, acceptable given a 2-level hierarchy (e.g. Grills &gt; Gas Grills, Accessories &gt; Covers)</td></tr>
+  </tbody>
+</table>
+
+<table class="data">
+  <caption>products (conceptual / model-line entity)</caption>
+  <tbody>
+    <tr><td><code>id</code></td><td>uuid, PK</td></tr>
+    <tr><td><code>brand_id</code></td><td>uuid, not null, FK → brands(id), on delete restrict</td></tr>
+    <tr><td><code>category_id</code></td><td>uuid, not null, FK → categories(id), on delete restrict</td></tr>
+    <tr><td><code>name</code></td><td>text, not null</td></tr>
+    <tr><td><code>slug</code></td><td>text, unique, nullable — Hebrew slug question flagged, see open questions and §2.2</td></tr>
+    <tr><td><code>description</code></td><td>text — long-form copy</td></tr>
+    <tr><td><code>specs</code></td><td>jsonb, not null, default '{}' — flexible spec bag (e.g. <code>{"burners":4,"btu":36000,"primary_cooking_area_cm2":5800,"material":"cast iron"}</code>), chosen over rigid columns since grills vs. accessories have very different attributes. Tradeoff: no DB-enforced key schema, needs an app-level key-naming convention.</td></tr>
+    <tr><td><code>published</code></td><td>boolean, default false</td></tr>
+    <tr><td><code>created_at / updated_at</code></td><td>timestamps</td></tr>
+  </tbody>
+</table>
+
+<table class="data">
+  <caption>product_variants (the purchasable/sellable unit — price/stock attach here, not on products)</caption>
+  <tbody>
+    <tr><td><code>id</code></td><td>uuid, PK</td></tr>
+    <tr><td><code>product_id</code></td><td>uuid, not null, FK → products(id), on delete cascade</td></tr>
+    <tr><td><code>sku</code></td><td>text, unique, not null</td></tr>
+    <tr><td><code>variant_name</code></td><td>text, nullable (e.g. "Black", "Large 150x70x120cm"; null/"Default" if no real variation)</td></tr>
+    <tr><td><code>dimensions</code></td><td>jsonb, nullable — structured (e.g. <code>{"width_cm":132,"depth_cm":61,"height_cm":114}</code>) instead of today's free-text, so it's filterable/sortable</td></tr>
+    <tr><td><code>price_ils</code></td><td>numeric(10,2), nullable (no real ILS pricing exists yet); check <code>price_ils &gt;= 0</code> or null</td></tr>
+    <tr><td><code>stock_status</code></td><td>text, not null, default 'unknown'; check in <code>('in_stock','out_of_stock','preorder','discontinued','unknown')</code></td></tr>
+    <tr><td><code>stock_qty</code></td><td>integer, nullable — optional, not required given the order-on-demand fulfillment model</td></tr>
+    <tr><td><code>published</code></td><td>boolean, default false — own flag; read policy requires this AND parent product published (see RLS)</td></tr>
+    <tr><td><code>sort_order</code></td><td>int, default 0</td></tr>
+    <tr><td><code>created_at / updated_at</code></td><td>timestamps</td></tr>
+  </tbody>
+</table>
+
+<table class="data">
+  <caption>product_images</caption>
+  <tbody>
+    <tr><td><code>id</code></td><td>uuid, PK</td></tr>
+    <tr><td><code>product_id</code></td><td>uuid, not null, FK → products(id), on delete cascade</td></tr>
+    <tr><td><code>variant_id</code></td><td>uuid, FK → product_variants(id), on delete cascade, nullable — set only for variant-specific shots (e.g. a color)</td></tr>
+    <tr><td><code>url</code></td><td>text, not null</td></tr>
+    <tr><td><code>alt_text</code></td><td>text — Hebrew accessibility/SEO</td></tr>
+    <tr><td><code>sort_order</code></td><td>int, default 0</td></tr>
+    <tr><td><code>is_primary</code></td><td>boolean, default false — partial unique index on <code>product_images(product_id) where is_primary</code> (at most one primary image per product)</td></tr>
+    <tr><td><code>created_at / updated_at</code></td><td>timestamps</td></tr>
+    <tr><td>Visibility</td><td>No own <code>published</code> column — visibility fully inherited from product (and variant if variant-scoped)</td></tr>
+  </tbody>
+</table>
+
+<h3>3.2 Relationships</h3>
+<ul>
+  <li><code>categories.parent_id</code> — self-referencing tree (2 levels in practice today)</li>
+  <li><code>products.brand_id</code> / <code>products.category_id</code> — many-to-one</li>
+  <li><code>product_variants.product_id</code> — one-to-many (every product has ≥1 variant; a trivial "Default" variant covers single-SKU products)</li>
+  <li><code>product_images.product_id</code> — one-to-many</li>
+  <li><code>product_images.variant_id</code> — optional many-to-one</li>
+  <li>Delete behavior: <code>brand_id</code>/<code>category_id</code> FKs are <code>on delete restrict</code>; <code>product_id</code> FKs on variants/images are <code>on delete cascade</code></li>
+</ul>
+
+<h3>3.3 Indexing</h3>
+<ul>
+  <li><code>products(category_id)</code>, <code>products(brand_id)</code>, <code>categories(parent_id)</code></li>
+  <li>GIN index on <code>products(specs)</code> using <code>jsonb_path_ops</code></li>
+  <li>btree on <code>product_variants(price_ils)</code>; GIN/btree on <code>product_variants(dimensions)</code> if needed</li>
+  <li>Generated <code>tsvector</code> column on <code>products</code> (name + description, <code>'simple'</code> config — Hebrew doesn't benefit from English stemming), with GIN index for search</li>
+  <li>Index on <code>product_variants(stock_status)</code></li>
+  <li>Indexes on <code>published</code> columns across brands/categories/products/product_variants (belt-and-braces at this row count)</li>
+  <li>Unique indexes: <code>brands.slug</code>, <code>categories.slug</code>, <code>products.slug</code>, <code>product_variants.sku</code>, plus the partial unique on <code>product_images</code> primary-image</li>
+</ul>
+
+<h3>3.4 Row-Level Security</h3>
+<p>Same pattern as the existing <code>products</code> table: RLS enabled on every table; anon/authenticated get SELECT-only on published rows via policy; no public insert/update/delete (catalog managed via Studio using the postgres role, which bypasses RLS); an explicit <code>grant select</code> is required per table in addition to the RLS policy (a known PostgREST gotcha).</p>
+<ul>
+  <li><strong>brands / categories / products</strong>: <code>using (published = true)</code></li>
+  <li><strong>product_variants</strong>: <code>using (published = true and exists (select 1 from products p where p.id = product_variants.product_id and p.published = true))</code> — a variant can be independently hidden but is never shown if the parent product is hidden</li>
+  <li><strong>product_images</strong>: no own published column; <code>using (exists (...product published...) and (variant_id is null or exists (...variant published...)))</code> — visibility is fully inherited</li>
+</ul>
+
+<h3>3.5 Search recommendation (DBA, reaffirmed by this design)</h3>
+<div class="flag">
+  <strong class="flag-label">NO NEW PAID SERVICE — COST-AVOIDANCE RECOMMENDATION</strong>
+  Postgres full-text search (tsvector + GIN), <strong>not</strong> a dedicated search service (Algolia,
+  Meilisearch, Elasticsearch). At 2 brands / dozens of SKUs, Postgres FTS plus the facet indexes above
+  (category/brand/price/stock) is fully sufficient for both relevance search and faceted browse, with no new
+  moving parts, no new operational/security surface, and no recurring cost. If the catalogue later grows to
+  hundreds/thousands of SKUs with heavy real-time typeahead needs, that is a future revisit requiring
+  CIO/CEO/parent decision — not decided here.
+</div>
+
+<h3>3.6 Proportionality notes (intentionally avoided by the DBA)</h3>
+<ul>
+  <li>No inventory movement/audit trail (the <code>stock_status</code> enum matches the order-on-demand model, not a warehouse system)</li>
+  <li>No <code>product_categories</code> many-to-many (a single <code>category_id</code> fits the current catalog shape)</li>
+  <li>No nested-set/ltree for categories (plain <code>parent_id</code> is enough for a 2-level tree)</li>
+  <li>No dedicated search service (see §3.5)</li>
+  <li><code>specs</code> as jsonb rather than a full EAV attribute system</li>
+</ul>
+<p>
+The one place the DBA added structure ahead of strictly proven need: <code>product_variants</code> as its own
+table — justified because retrofitting it after real pricing/orders exist would be far more disruptive than
+building it now.
+</p>
+
+<div class="diagram-wrap section">
+<svg viewBox="0 0 900 640" width="900" height="640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Entity relationship diagram">
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0b3d5c"/>
+    </marker>
+  </defs>
+  <style>
+    .ebox { fill: #eaf2f7; stroke: #0b3d5c; stroke-width: 1.5; }
+    .ebox-ctx { fill: #f0f0f0; stroke: #777; stroke-width: 1.2; stroke-dasharray: 4,3; }
+    .ehead { font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; fill: #0b3d5c; }
+    .ehead-ctx { fill: #555; }
+    .efield { font-family: "Courier New", Courier, monospace; font-size: 10.5px; fill: #16242b; }
+    .erel { stroke: #0b3d5c; stroke-width: 1.5; fill: none; }
+    .erel-lbl { font-family: Arial, Helvetica, sans-serif; font-size: 10px; fill: #444; }
+  </style>
+
+  <!-- brands -->
+  <rect class="ebox" x="30" y="20" width="230" height="135" rx="6"/>
+  <text class="ehead" x="145" y="40" text-anchor="middle">brands</text>
+  <line x1="30" y1="48" x2="260" y2="48" stroke="#0b3d5c"/>
+  <text class="efield" x="42" y="65">id (PK)</text>
+  <text class="efield" x="42" y="80">name, slug (unique)</text>
+  <text class="efield" x="42" y="95">logo_url</text>
+  <text class="efield" x="42" y="110">published</text>
+  <text class="efield" x="42" y="125">created_at / updated_at</text>
+
+  <!-- categories -->
+  <rect class="ebox" x="330" y="20" width="240" height="155" rx="6"/>
+  <text class="ehead" x="450" y="40" text-anchor="middle">categories</text>
+  <line x1="330" y1="48" x2="570" y2="48" stroke="#0b3d5c"/>
+  <text class="efield" x="342" y="65">id (PK)</text>
+  <text class="efield" x="342" y="80">parent_id (FK → categories)</text>
+  <text class="efield" x="342" y="95">name, slug (unique)</text>
+  <text class="efield" x="342" y="110">sort_order</text>
+  <text class="efield" x="342" y="125">published</text>
+  <text class="efield" x="342" y="140">created_at / updated_at</text>
+
+  <!-- products -->
+  <rect class="ebox" x="630" y="20" width="240" height="190" rx="6"/>
+  <text class="ehead" x="750" y="40" text-anchor="middle">products</text>
+  <line x1="630" y1="48" x2="870" y2="48" stroke="#0b3d5c"/>
+  <text class="efield" x="642" y="65">id (PK)</text>
+  <text class="efield" x="642" y="80">brand_id (FK → brands)</text>
+  <text class="efield" x="642" y="95">category_id (FK → categories)</text>
+  <text class="efield" x="642" y="110">name, slug (unique, nullable)</text>
+  <text class="efield" x="642" y="125">description</text>
+  <text class="efield" x="642" y="140">specs (jsonb)</text>
+  <text class="efield" x="642" y="155">published</text>
+  <text class="efield" x="642" y="170">tsvector (generated, GIN)</text>
+
+  <!-- product_variants -->
+  <rect class="ebox" x="330" y="280" width="270" height="210" rx="6"/>
+  <text class="ehead" x="465" y="300" text-anchor="middle">product_variants</text>
+  <line x1="330" y1="308" x2="600" y2="308" stroke="#0b3d5c"/>
+  <text class="efield" x="342" y="325">id (PK)</text>
+  <text class="efield" x="342" y="340">product_id (FK → products, cascade)</text>
+  <text class="efield" x="342" y="355">sku (unique)</text>
+  <text class="efield" x="342" y="370">variant_name</text>
+  <text class="efield" x="342" y="385">dimensions (jsonb)</text>
+  <text class="efield" x="342" y="400">price_ils</text>
+  <text class="efield" x="342" y="415">stock_status, stock_qty</text>
+  <text class="efield" x="342" y="430">published, sort_order</text>
+
+  <!-- product_images -->
+  <rect class="ebox" x="640" y="280" width="240" height="190" rx="6"/>
+  <text class="ehead" x="760" y="300" text-anchor="middle">product_images</text>
+  <line x1="640" y1="308" x2="880" y2="308" stroke="#0b3d5c"/>
+  <text class="efield" x="652" y="325">id (PK)</text>
+  <text class="efield" x="652" y="340">product_id (FK → products, cascade)</text>
+  <text class="efield" x="652" y="355">variant_id (FK, nullable, cascade)</text>
+  <text class="efield" x="652" y="370">url, alt_text</text>
+  <text class="efield" x="652" y="385">sort_order</text>
+  <text class="efield" x="652" y="400">is_primary (partial unique/product)</text>
+
+  <!-- leads (context) -->
+  <rect class="ebox-ctx" x="30" y="280" width="230" height="130" rx="6"/>
+  <text class="ehead ehead-ctx" x="145" y="300" text-anchor="middle">leads (context only)</text>
+  <line x1="30" y1="308" x2="260" y2="308" stroke="#777" stroke-dasharray="4,3"/>
+  <text class="efield" x="42" y="325">id (PK)</text>
+  <text class="efield" x="42" y="340">name, phone/email, message</text>
+  <text class="efield" x="42" y="355">created_at</text>
+  <text class="erel-lbl" x="42" y="395">No FK to catalog — standalone</text>
+  <text class="erel-lbl" x="42" y="408">contact-form capture (existing)</text>
+
+  <!-- relationships -->
+  <path class="erel" marker-end="url(#arrow2)" d="M260,90 L630,95"/>
+  <text class="erel-lbl" x="380" y="85">1—N brand_id</text>
+
+  <path class="erel" marker-end="url(#arrow2)" d="M570,100 L630,105"/>
+  <text class="erel-lbl" x="500" y="120">1—N category_id</text>
+
+  <path class="erel" marker-end="url(#arrow2)" d="M450,175 Q400,240 400,280"/>
+  <text class="erel-lbl" x="230" y="230">self: parent_id (2-level tree)</text>
+
+  <path class="erel" marker-end="url(#arrow2)" d="M700,210 L500,280"/>
+  <text class="erel-lbl" x="560" y="250">1—N product_id (cascade)</text>
+
+  <path class="erel" marker-end="url(#arrow2)" d="M760,210 L760,280"/>
+  <text class="erel-lbl" x="770" y="248">1—N product_id (cascade)</text>
+
+  <path class="erel" marker-end="url(#arrow2)" d="M600,360 L640,360"/>
+  <text class="erel-lbl" x="595" y="350">0—N variant_id (optional, cascade)</text>
+
+  <!-- self-loop for categories.parent_id -->
+  <path class="erel" marker-end="url(#arrow2)" d="M400,20 C440,-10 500,-10 520,20"/>
+  <text class="erel-lbl" x="410" y="10">parent_id (self-ref)</text>
+
+  <text class="erel-lbl" x="30" y="520" font-style="italic">Not shown: brands/categories/products/product_variants all carry RLS "published=true" read policies (§3.4).</text>
+</svg>
+<p class="diagram-caption">Diagram (b): entity-relationship diagram of the catalog schema (DBA design), including <code>leads</code> for context as the existing, unrelated table.</p>
+</div>
+
+<h2>4. Key Catalogue Features — Summary</h2>
+<table class="data">
+  <thead><tr><th>Feature</th><th>How it's delivered</th></tr></thead>
+  <tbody>
+    <tr><td>Browsing / categories</td><td><code>catalog.html</code> reads the (small, 2-level) category tree from <code>categories</code>, rendered as a simple nav/sidebar; selecting a category filters via <code>category_id</code> query param.</td></tr>
+    <tr><td>Filtering</td><td>Brand, category, price range, stock status — PostgREST query-parameter filters (§2.3) against indexed columns; facet counts computed client-side at this scale.</td></tr>
+    <tr><td>Search</td><td>Free-text search box hits the generated <code>tsvector</code> column via PostgREST's <code>fts</code> filter (§2.3, §3.5) — Postgres FTS, no external search service.</td></tr>
+    <tr><td>Product detail pages</td><td><code>product.html?id=...</code>, fetches one product + its variants + images; variant picker if &gt;1 variant (§2.4).</td></tr>
+    <tr><td>Images</td><td>Self-hosted Supabase Storage bucket, public read, Studio-based upload (§2.5).</td></tr>
+    <tr><td>Variants (size/color/model)</td><td><code>product_variants</code> rows per product; picker swaps price/stock/dimensions/images (§2.4).</td></tr>
+    <tr><td>Stock/availability display</td><td><code>stock_status</code> enum mapped to Hebrew labels/colors (§2.4), worded to match the order-on-demand fulfillment model.</td></tr>
+  </tbody>
+</table>
+
+<h2>5. Open Questions / Risks</h2>
+<h3>5.1 From the DBA (data layer)</h3>
+<ol>
+  <li><strong>Hebrew slugs</strong> — a "slug" column is an English SEO convention that doesn't map cleanly onto Hebrew names. Partially addressed in §2.2 (brands/categories get real slugs now; products/variants route by id/sku until Marketing settles a convention) — final call is a Marketing/CIO decision, not settled here.</li>
+  <li><strong><code>specs</code> jsonb key-naming convention</strong> needs to be agreed at the app level (e.g. fixed key sets per category), since jsonb isn't schema-enforced. Recommend Dev and DBA agree a short written convention (e.g. a per-category key list) before the catalog UI is built against it, so the frontend isn't guessing at key names.</li>
+  <li><strong>Migrating the 7 existing seeded (unpublished) Char-Broil rows</strong> from the old free-text columns (dimensions/burners/features/price_tier) to the new structured shape is its own reviewed migration step for Dev — zero live-traffic risk since nothing is published yet.</li>
+  <li><strong>Category cycle prevention is intentionally shallow</strong> (blocks only direct self-parenting) — accepted given the 2-level hierarchy.</li>
+  <li><strong>Backup/restore</strong> — the schema-agnostic <code>backup-db.ps1</code> (pg_dump) will pick up the new tables automatically, but the restore path has never been tested end-to-end. DBA recommends an actual restore drill once any schema is applied, independent of this catalog design.</li>
+</ol>
+<h3>5.2 From this design (Solution Architect)</h3>
+<ol>
+  <li><strong>SEO / social-link-preview tradeoff (§2.1)</strong> — client-side-only rendering means shared product links (e.g. via WhatsApp, a very common Israeli sharing channel) won't show a rich preview, since link-preview bots don't execute JS. Flagged as a genuine future decision (Option B, build-time pre-rendering), not solved by this design; revisit once Marketing has an active plan to drive traffic to individual product links.</li>
+  <li><strong>Facet-count performance at scale</strong> — client-side facet counting is fine at dozens of SKUs; if the catalogue grows substantially, the DBA's suggested materialized view (refreshed on catalog change) is the recommended next step, not a day-one requirement.</li>
+  <li><strong>Image sizing discipline</strong> — no automatic image optimization exists in the self-hosted stack; relies on twins/Marketing manually sizing images reasonably before upload (§2.5). Worth a one-line note in whatever internal "how to add a product" instructions Dev/CIO eventually write for the twins.</li>
+  <li><strong>"In stock" wording vs. order-on-demand reality (§2.4)</strong> — flagged for Marketing sign-off on exact Hebrew copy so stock badges don't imply held inventory that doesn't exist.</li>
+  <li><strong>Studio as the only content-management path</strong> — consistent with the existing approach (no custom admin panel built), but worth the CIO confirming the twins are comfortable inserting rows across five related tables (brands → categories → products → variants → images) via Studio's table editor rather than a single guided form. Not a blocker, just a usability note for whoever trains the twins on it.</li>
+</ol>
+
+<h2>6. Recommendations Requiring Sign-off</h2>
+<table class="data signoff-table">
+  <thead><tr><th>#</th><th>Item</th><th>Recommendation</th><th>New cost?</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Frontend pattern</td><td>Keep plain HTML/CSS/JS, client-side fetch from PostgREST, no framework, no build step (§2.1, Option A)</td><td>None</td></tr>
+    <tr><td>2</td><td>Build-time SEO/link-preview pre-rendering</td><td>Defer for now (§2.1, Option B) — revisit once Marketing has an active traffic/sharing plan for product links</td><td>None (future option only)</td></tr>
+    <tr><td>3</td><td>Search</td><td>Reaffirm DBA's Postgres full-text search recommendation — no dedicated search service (§3.5)</td><td>None</td></tr>
+    <tr><td>4</td><td>Images</td><td>Use the self-hosted Supabase Storage service already in the stack (§2.5) — new use of an existing component</td><td>None new (already-approved stack); indirectly adds to existing EC2 disk estimate</td></tr>
+    <tr><td>5</td><td>URL/routing scheme</td><td>Real slugs for brands/categories now; id/sku-based routing for products/variants until Marketing settles a Hebrew slug convention (§2.2)</td><td>None</td></tr>
+    <tr><td>6</td><td>Facet-count optimization</td><td>No materialized view now — client-side counting at current scale; DBA's materialized-view idea deferred to a future revisit</td><td>None</td></tr>
+    <tr><td>7</td><td>External image CDN / dedicated search service</td><td>Explicitly rejected for now as disproportionate to current scale/traffic</td><td>Avoided</td></tr>
+  </tbody>
+</table>
+<p>
+None of the above introduces a new paid third-party service. The only genuine architecture decision point left
+open for the CIO/CEO/parent is item 2 (build-time pre-rendering) — presented as an either/or, not decided by
+this document.
+</p>
+
+<div class="footer-note">
+  Mangalist — Solution Architect design deliverable, produced at the CIO's direction per the parent's 2026-07-05
+  request. Design/planning only — no code, migrations, or site changes were made as part of this task. Hand-off:
+  CIO reviews this design, then routes any resulting implementation work to Dev (frontend/catalog pages) and DBA
+  (schema migration), with QA verifying once built. This document does not constitute approval of anything in it.
+</div>
+
+</body>
+</html>

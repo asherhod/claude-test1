@@ -1,0 +1,29 @@
+.placeholder-wrap {
+  padding: 60px var(--gutter);
+  display: flex;
+  justify-content: center;
+}
+
+.placeholder-card {
+  background: var(--white);
+  border-radius: var(--radius-sheet);
+  box-shadow: var(--shadow-card);
+  padding: 56px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 560px;
+}
+
+.placeholder-card h1 {
+  font-weight: var(--fw-black);
+  font-size: 28px;
+  color: var(--ink);
+}
+
+.placeholder-card p {
+  font-size: 16px;
+  color: var(--text-secondary);
+}

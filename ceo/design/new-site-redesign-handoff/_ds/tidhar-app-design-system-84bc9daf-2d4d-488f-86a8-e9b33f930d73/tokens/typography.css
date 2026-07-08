@@ -1,0 +1,45 @@
+/* ── Tidhar App — Typography tokens ───────────────────────────────────
+   Type scale transcribed from the UI KIT + real components. Primary face is
+   Almoni DL AAA (substituted by Assistant); Assistant is also used directly
+   for some button/label text in the source. The app is Hebrew-first and RTL.
+   ---------------------------------------------------------------------- */
+
+:root {
+  --font-sans: "Almoni DL AAA", "Assistant", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-ui:   "Assistant", "Almoni DL AAA", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  /* ---- Font weights ---- */
+  --fw-regular: 400; /* @kind other */
+  --fw-medium:  500; /* @kind other */
+  --fw-semibold:600; /* @kind other */
+  --fw-bold:    700; /* @kind other */
+  --fw-black:   800; /* @kind other */
+
+  /* ---- Type scale (px sizes verbatim from source) ---- */
+  --fs-display:  36px;   /* hero headline, Bold */
+  --fs-h1:       28px;
+  --fs-h2:       24px;   /* card / section title, Bold */
+  --fs-h3:       20px;
+  --fs-title:    18px;   /* button large / list title */
+  --fs-body:     16px;   /* default body & controls */
+  --fs-label:    14px;   /* labels, small buttons, tags */
+  --fs-caption:  12px;   /* meta / hex codes */
+  --fs-micro:    10px;
+
+  /* ---- Line-heights ---- */
+  --lh-tight:   1.0; /* @kind other */
+  --lh-snug:    1.22; /* @kind other */
+  --lh-normal:  1.4; /* @kind other */
+  --lh-relaxed: 1.55; /* @kind other */
+
+  /* ---- Semantic roles ---- */
+  --text-display: var(--fw-bold)   var(--fs-display)/var(--lh-snug)   var(--font-sans);
+  --text-h2:      var(--fw-bold)   var(--fs-h2)/var(--lh-snug)        var(--font-sans);
+  --text-h3:      var(--fw-bold)   var(--fs-h3)/var(--lh-snug)        var(--font-sans);
+  --text-body:    var(--fw-regular)var(--fs-body)/var(--lh-normal)    var(--font-sans);
+  --text-body-strong: var(--fw-bold) var(--fs-body)/var(--lh-normal) var(--font-sans);
+  --text-label:   var(--fw-bold)   var(--fs-label)/var(--lh-tight)    var(--font-sans);
+  --text-caption: var(--fw-regular)var(--fs-caption)/var(--lh-normal) var(--font-sans);
+}

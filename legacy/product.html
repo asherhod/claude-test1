@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0E0D0B" />
+  <title id="page-title">טוען מוצר... — מנגליסט</title>
+
+  <!-- No server-side <meta description>/Open Graph tags here on purpose --
+       this page is the client-side-rendered interactive product view
+       (variant picker etc). Crawlers/link-preview bots that need real
+       baked-in meta tags per product should be pointed at the pre-rendered
+       static snapshot instead (catalog-prerendered/<id>.html, built by
+       tools/prerender-products.js) -- see that script's header comment. -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800;900&family=Assistant:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">דילוג לתוכן הראשי</a>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="index.html" class="logo">מנגליסט</a>
+      <button class="nav-toggle" aria-label="פתיחת/סגירת ניווט" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="catalog.html" class="is-current">קטלוג</a></li>
+        <li><a href="index.html#about">אודות</a></li>
+        <li><a href="index.html#contact" class="nav-cta">צור קשר</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" class="product-page">
+    <p id="product-loading" class="catalog-empty">טוען מוצר...</p>
+    <p id="product-error" class="catalog-empty catalog-error" hidden>
+      המוצר לא נמצא, או שאינו זמין כרגע. חזרו ל<a href="catalog.html">קטלוג</a>, או
+      <a href="index.html#contact">צרו קשר</a>.
+    </p>
+
+    <article id="product-detail" class="product-detail" hidden>
+      <p class="product-breadcrumb">
+        <a href="catalog.html">קטלוג</a>
+        <span aria-hidden="true"> / </span>
+        <span id="product-category"></span>
+      </p>
+
+      <div class="product-detail-grid">
+        <div class="product-gallery">
+          <div class="product-gallery-main" id="product-gallery-main">
+            <div class="product-card-placeholder" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="M21 15l-5-5-9 9"></path></svg>
+              <span>אין תמונה זמינה</span>
+            </div>
+          </div>
+          <div class="product-gallery-thumbs" id="product-gallery-thumbs"></div>
+        </div>
+
+        <div class="product-info">
+          <p id="product-brand" class="product-brand"></p>
+          <h1 id="product-name"></h1>
+
+          <div id="product-variant-picker" class="product-variant-picker" hidden></div>
+
+          <div class="product-price-row">
+            <span id="product-price" class="product-price"></span>
+            <span id="product-stock-badge" class="stock-badge"></span>
+          </div>
+
+          <dl id="product-dimensions" class="product-dimensions" hidden></dl>
+
+          <div id="product-specs" class="product-specs"></div>
+
+          <p id="product-description" class="product-description"></p>
+
+          <a href="index.html#contact" class="btn btn-secondary product-contact-link">שאלות? צרו איתנו קשר</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 מנגליסט. כל הזכויות שמורות.</p>
+  </footer>
+
+  <script src="supabase-config.js"></script>
+  <script src="catalog-shared.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+/* ── Tidhar App — Spacing, radius, shadow, layout tokens ──────────────
+   Spacing base unit is 4px. Radii transcribed from source: fully-rounded
+   pills (buttons/chips/tags), 4.8px checkboxes, and generous card corners.
+   ---------------------------------------------------------------------- */
+
+:root {
+  /* ---- Spacing (4px base) ---- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+
+  /* ---- Radii (verbatim) ---- */
+  --radius-xs:   4.8px;   /* checkbox */
+  --radius-sm:   8px;     /* inputs, small chips of content */
+  --radius-md:   12px;    /* inner tiles */
+  --radius-lg:   16px;    /* cards */
+  --radius-xl:   24px;    /* large cards / sheets */
+  --radius-pill: 200px;   /* buttons, chips, tags */
+  --radius-full: 9999px;
+
+  /* ---- Elevation ---- */
+  --shadow-none:  none;
+  --shadow-card:  0 4px 24px rgba(0,11,21,0.06);        /* resting app card */
+  --shadow-raised:0px 4px 8px rgba(0,0,0,0.16);         /* floating button (source) */
+  --shadow-sheet: 0 -8px 32px rgba(0,11,21,0.12);       /* bottom sheet */
+  --shadow-inset-border: inset 0 0 0 1px var(--tid-grey-300);
+
+  /* ---- Layout ---- */
+  --app-width: 360px;         /* mobile frame width (source) */
+  --app-gutter: 16px;         /* app horizontal padding */
+  --app-card-gap: 20px;       /* gap between stacked cards */
+  --tap-min: 44px;            /* minimum touch target */
+}

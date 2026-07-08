@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0E0D0B" />
+  <meta name="description" content="מנגליסט — מנגלי גז וציוד נלווה איכותיים בישראל, עם אחריות יבואן רשמי ומשלוח מהיר לכל הארץ." />
+  <title>מנגליסט — מנגלי גז וציוד נלווה</title>
+
+  <!-- Fonts: Rubik (headings, characterful grotesk) + Assistant (body) carry all Hebrew
+       copy — both are Google Fonts with native Hebrew glyph support, chosen instead of
+       Archivo/Space Grotesk which have no Hebrew coverage and would silently fall back to
+       system fonts. JetBrains Mono is added for decorative Latin/numeric "nameplate" tags
+       only (section indices, corner stamps) — it has no Hebrew glyphs and is never applied
+       to Hebrew text. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800;900&family=Assistant:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Supabase JS client (CDN, no build step/bundler -- consistent with the rest of
+       this project's no-framework approach). Talks to the local self-hosted
+       Supabase stack started via `supabase start` in supabase-local/. See
+       supabase-config.js for the local URL + anon key. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">דילוג לתוכן הראשי</a>
+
+  <div class="utility-bar">
+    <div class="utility-bar-inner">
+      <span class="utility-item">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="1" y="7" width="13" height="9"></rect>
+          <path d="M14 10h4l3 3v3h-7z"></path>
+          <circle cx="6" cy="18" r="1.6"></circle>
+          <circle cx="17" cy="18" r="1.6"></circle>
+        </svg>
+        משלוח מהיר לכל הארץ
+      </span>
+      <span class="utility-item">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+        אחריות יבואן רשמי
+      </span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="#" class="logo">מנגליסט</a>
+      <button class="nav-toggle" aria-label="פתיחת/סגירת ניווט" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#cat-gas">מנגלי גז</a></li>
+        <li><a href="#cat-accessories">אביזרים נלווים</a></li>
+        <li><a href="#cat-charcoal">פחם ומעשנות</a></li>
+        <li><a href="#cat-deals">מבצעים</a></li>
+        <li><a href="#about">אודות</a></li>
+        <li><a href="#contact" class="nav-cta">צור קשר</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <p class="hero-eyebrow">מנגלי גז וציוד נלווה, ישראל</p>
+          <h1>המוצרים הכי טובים, השירות הכי טוב — ישר אליכם הביתה</h1>
+          <p>מנגליסט מביאה מנגלי גז וציוד נלווה איכותיים, עם ליווי אישי לפני הקנייה, בזמן הבחירה ואחרי המשלוח.</p>
+          <a href="#contact" class="btn btn-primary">לשליחת פנייה</a>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <!-- TODO(design): placeholder atmosphere photography (picsum.photos, random source —
+               not curated grill/fire imagery). Swap for real product/atmosphere photography
+               once available; recommended: 900x1100 or larger, fire/grate/char themed. -->
+          <img src="https://picsum.photos/seed/mangalist-fire-grates/900/1100" alt="" loading="eager" width="900" height="1100" />
+          <div class="hero-visual-scrim"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories" class="categories reveal-group">
+      <h2 class="reveal"><span class="idx idx-center">01</span>קטגוריות</h2>
+      <div class="category-grid">
+        <div id="cat-gas" class="category-tile tile-gas reveal" data-idx="01">
+          <!-- TODO(design): placeholder photo (picsum.photos seed, random content). Replace with real gas-grill/flame photography. -->
+          <div class="tile-media" style="background-image:url('https://picsum.photos/seed/mangalist-gas-flame/800/900')"></div>
+          <div class="tile-scrim"></div>
+          <div class="tile-body">
+            <span class="tile-icon accent-ember" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21c-4 0-7-2.7-7-6.5C5 10 8 7 8 4c0-1 .3-2 1-3 0 2 1.5 3 3 5 1 1.3 1.5 2.7 1.5 4 0-2 1-3 1-5 2 1.5 3.5 4 3.5 6.5C18 18.3 16 21 12 21z"></path>
+              </svg>
+            </span>
+            <h3>מנגלי גז</h3>
+          </div>
+        </div>
+
+        <div id="cat-accessories" class="category-tile tile-accessories reveal" data-idx="02">
+          <!-- TODO(design): placeholder photo (picsum.photos seed, random content). Replace with real accessories/metal-grate photography. -->
+          <div class="tile-media" style="background-image:url('https://picsum.photos/seed/mangalist-metal-grate/700/500')"></div>
+          <div class="tile-scrim"></div>
+          <div class="tile-body">
+            <span class="tile-icon accent-ember" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="7" cy="7" r="3"></circle>
+                <path d="M9.2 9.2L19 19"></path>
+                <path d="M5 19l4-4"></path>
+              </svg>
+            </span>
+            <h3>אביזרים נלווים</h3>
+          </div>
+        </div>
+
+        <div id="cat-charcoal" class="category-tile tile-charcoal reveal" data-idx="03">
+          <!-- TODO(design): placeholder photo (picsum.photos seed, random content). Replace with real charcoal/smoke photography. -->
+          <div class="tile-media" style="background-image:url('https://picsum.photos/seed/mangalist-charcoal-smoke/700/500')"></div>
+          <div class="tile-scrim"></div>
+          <div class="tile-body">
+            <span class="tile-icon accent-ember" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 6c1-1 1-2 0-3M12 6c1-1 1-2 0-3M16 6c1-1 1-2 0-3"></path>
+                <circle cx="8" cy="16" r="2.4"></circle>
+                <circle cx="12" cy="17" r="2.8"></circle>
+                <circle cx="16" cy="16" r="2.4"></circle>
+              </svg>
+            </span>
+            <h3>פחם ומעשנות</h3>
+          </div>
+        </div>
+
+        <div id="cat-deals" class="category-tile tile-deals reveal" data-idx="04">
+          <div class="tile-body tile-body-deals">
+            <span class="tile-icon accent-brass" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="19" x2="19" y2="5"></line>
+                <circle cx="7.5" cy="7.5" r="2.5"></circle>
+                <circle cx="16.5" cy="16.5" r="2.5"></circle>
+              </svg>
+            </span>
+            <h3>מבצעים</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-note reveal">
+        <span class="catalog-badge">בקרוב</span>
+        <p>בקרוב: קטלוג המוצרים הראשון שלנו. אנחנו סוגרים עכשיו את קווי המוצרים הראשונים — השאירו פרטים ונעדכן אתכם ברגע שהם עולים.</p>
+        <a href="#contact" class="btn btn-secondary">עדכנו אותי</a>
+      </div>
+    </section>
+
+    <section id="features" class="features reveal-group">
+      <h2 class="reveal"><span class="idx idx-center">02</span>למה מנגליסט</h2>
+      <div class="feature-grid">
+        <div class="feature-card reveal" data-idx="01">
+          <span class="feature-icon accent-ember" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+            </svg>
+          </span>
+          <h3>מבחר איכותי</h3>
+          <p>מנגלי גז וציוד נלווה ממגוון יבואנים, מותאם לצרכים שלכם.</p>
+        </div>
+        <div class="feature-card reveal" data-idx="02">
+          <span class="feature-icon accent-ember" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"></circle>
+              <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
+            </svg>
+          </span>
+          <h3>ליווי אישי</h3>
+          <p>אנחנו כאן לענות על כל שאלה ולעזור לכם לבחור את המנגל המתאים.</p>
+        </div>
+        <div class="feature-card reveal" data-idx="03">
+          <span class="feature-icon accent-ember" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="7" width="13" height="9"></rect>
+              <path d="M14 10h4l3 3v3h-7z"></path>
+              <circle cx="6" cy="18" r="1.6"></circle>
+              <circle cx="17" cy="18" r="1.6"></circle>
+            </svg>
+          </span>
+          <h3>משלוח עד הבית</h3>
+          <p>המשלוח מתבצע ישירות אליכם, באמינות ובזמינות.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about reveal-group">
+      <div class="about-inner">
+        <div class="about-content reveal">
+          <h2><span class="idx">03</span>המשימה שלנו</h2>
+          <p>ארוחה טובה על האש מתחילה מציוד איכותי. אנחנו במנגליסט מתמחים במוצרים הטובים ביותר ובשירות מקצועי שאפשר לסמוך עליו — לפני הקנייה, בזמן הבחירה, ואחרי המשלוח. המטרה שלנו היא להפוך את מנגליסט לכתובת ולקהילה עבור ישראלים שאוהבים לעשות על האש ולארח בבית עם בשר טוב ואיכותי.</p>
+        </div>
+        <div class="about-visual reveal" aria-hidden="true">
+          <!-- TODO(design): placeholder photo (picsum.photos seed, random content). Replace with real charcoal/char-texture photography. -->
+          <img src="https://picsum.photos/seed/mangalist-char-texture/900/1000" alt="" loading="lazy" width="900" height="1000" />
+          <div class="about-visual-scrim"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact reveal-group">
+      <h2 class="reveal"><span class="idx idx-center">04</span>יצירת קשר</h2>
+      <form id="contact-form" class="reveal">
+        <label for="name">שם</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">אימייל</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">הודעה</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="btn btn-primary">שליחת פנייה</button>
+      </form>
+      <p id="form-status" class="form-status" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 מנגליסט. כל הזכויות שמורות.</p>
+  </footer>
+
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

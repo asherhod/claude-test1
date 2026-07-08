@@ -1,0 +1,135 @@
+/* Generated from Figma Variables. First mode = :root default.
+   FLOAT tokens are unitless — multiply by 1px in calc() where a length is needed. */
+
+:root {
+  --background-brand-default: var(--brand-800); /* @kind color */
+  --basic-color-black: rgb(25,25,25); /* @kind color */
+  --basic-color-grey-light-1: rgb(230,230,230); /* @kind color */
+  --basic-color-white: rgb(255,255,255); /* @kind color */
+  --black-2: rgb(5,23,17); /* @kind color */
+  --black-3: rgb(31,31,31); /* @kind color */
+  --black-4: rgb(5,23,17); /* @kind color */
+  --black: rgb(25,25,25); /* @kind color */
+  --blue-ligth-1: rgb(223,233,252); /* @kind color */
+  --brand-100: rgb(245,245,245); /* @kind color */
+  --brand-2: rgb(251,173,26); /* @kind color */
+  --brand-800: rgb(44,44,44); /* @kind color */
+  --brand-b-800: rgb(119,0,0); /* @kind color */
+  --brand-dark: rgb(0,135,97); /* @kind color */
+  --brand-light: rgb(27,189,119); /* @kind color */
+  --brand-main: rgb(0,169,120); /* @kind color */
+  --brand: rgb(0,122,189); /* @kind color */
+  --car-world-blue-dark: rgb(24,59,134); /* @kind color */
+  --car-world-main-blue: rgb(46,105,231); /* @kind color */
+  --color-2: rgb(255,255,255); /* @kind color */
+  --color-neutral-white: rgb(255,255,255); /* @kind color */
+  --color: rgb(249,249,249); /* @kind color */
+  --colors-blue: rgb(0,122,255); /* @kind color */
+  --colors-green: rgb(52,199,89); /* @kind color */
+  --colors-red-2: rgb(255,56,60); /* @kind color */
+  --colors-red: rgb(255,59,48); /* @kind color */
+  --dark-blue: rgb(43,41,116); /* @kind color */
+  --dark: rgb(5,23,17); /* @kind color */
+  --gray-900-2: rgb(30,30,30); /* @kind color */
+  --gray-900: rgb(30,30,30); /* @kind color */
+  --grays-gray-4: rgb(209,209,214); /* @kind color */
+  --grey-gray-m-2: rgb(209,213,219); /* @kind color */
+  --grey-gray-m: rgb(209,213,219); /* @kind color */
+  --grey-gray-medium-light-2: rgb(245,246,248); /* @kind color */
+  --grey-gray-medium-light: rgb(245,246,248); /* @kind color */
+  --grey-grey-2: rgb(113,113,113); /* @kind color */
+  --grey-grey: rgb(111,116,125); /* @kind color */
+  --grey-super-light-gray-2: rgb(252,252,252); /* @kind color */
+  --grey-super-light-gray: rgb(252,252,252); /* @kind color */
+  --grey: rgb(139,151,161); /* @kind color */
+  --icon-default-default-2: var(--gray-900); /* @kind color */
+  --icon-default-default: var(--gray-900); /* @kind color */
+  --labels-primary: rgb(0,0,0); /* @kind color */
+  --mada-blue-bg: rgb(237,243,255); /* @kind color */
+  --mada-blue: rgb(40,46,117); /* @kind color */
+  --mada-disable: rgb(116,119,157); /* @kind color */
+  --mada-lightblue: rgb(213,224,247); /* @kind color */
+  --mada-white: rgb(255,255,255); /* @kind color */
+  --miscellaneous-alert-menu-action-sheet-separators: rgba(128,128,128,0.55); /* @kind color */
+  --miscellaneous-kit-section-fill: rgb(245,245,245); /* @kind color */
+  --miscellaneous-menu-large-separator: rgba(0,0,0,0.08); /* @kind color */
+  --mode: "Light"; /* @kind other */
+  --new-color-brand: rgb(37,84,84); /* @kind color */
+  --radius-0: 0;
+  --radius-xl: 99;
+  --red: rgb(224,7,0); /* @kind color */
+  --secondary-colors-pango-orange: rgb(255,101,80); /* @kind color */
+  --spacing-01: 4;
+  --super-light-gray: rgb(249,250,251); /* @kind color */
+  --variable-1688971042763: rgb(255,255,255); /* @kind color */
+  --white-1000-2: rgb(255,255,255); /* @kind color */
+  --white-1000: rgb(255,255,255); /* @kind color */
+  --white-2: rgb(255,255,255); /* @kind color */
+  --white-3: rgb(255,255,255); /* @kind color */
+  --white: rgb(255,255,255); /* @kind color */
+  --yellow: rgb(247,191,82); /* @kind color */
+}
+
+:root[data-mode="mode-2"] {
+  --mada-blue-bg: rgb(237,243,255); /* @kind color */
+  --mada-blue: rgb(40,46,117); /* @kind color */
+  --mada-disable: rgb(110,113,141); /* @kind color */
+  --mada-lightblue: rgb(213,224,247); /* @kind color */
+  --mada-white: rgb(255,255,255); /* @kind color */
+}
+
+:root[data-theme="dark"], .dark {
+  --background-brand-default: var(--brand-100); /* @kind color */
+  --basic-color-black: rgb(5,23,17); /* @kind color */
+  --basic-color-grey-light-1: rgb(209,213,219); /* @kind color */
+  --basic-color-white: rgb(255,255,255); /* @kind color */
+  --black-3: rgb(5,23,17); /* @kind color */
+  --black-4: rgb(5,23,17); /* @kind color */
+  --brand-2: rgb(244,228,165); /* @kind color */
+  --brand-dark: rgb(0,135,97); /* @kind color */
+  --brand-light: rgb(27,189,119); /* @kind color */
+  --brand-main: rgb(0,169,120); /* @kind color */
+  --brand: rgb(27,189,119); /* @kind color */
+  --car-world-blue-dark: rgb(27,189,119); /* @kind color */
+  --car-world-main-blue: rgb(27,189,119); /* @kind color */
+  --colors-blue: rgb(10,132,255); /* @kind color */
+  --colors-blue: rgb(10,132,255); /* @kind color */
+  --colors-green: rgb(48,209,88); /* @kind color */
+  --colors-green: rgb(48,209,88); /* @kind color */
+  --colors-red-2: rgb(255,66,69); /* @kind color */
+  --colors-red-2: rgb(255,97,101); /* @kind color */
+  --colors-red: rgb(255,69,58); /* @kind color */
+  --colors-red: rgb(255,69,58); /* @kind color */
+  --grays-gray-4: rgb(54,54,56); /* @kind color */
+  --grays-gray-4: rgb(58,58,60); /* @kind color */
+  --grey-gray-m-2: rgb(209,213,219); /* @kind color */
+  --grey-gray-m: rgb(209,213,219); /* @kind color */
+  --grey-gray-medium-light-2: rgb(245,246,248); /* @kind color */
+  --grey-gray-medium-light: rgb(245,246,248); /* @kind color */
+  --grey-grey-2: rgb(111,116,125); /* @kind color */
+  --grey-grey: rgb(111,116,125); /* @kind color */
+  --grey-super-light-gray-2: rgb(252,252,252); /* @kind color */
+  --grey-super-light-gray: rgb(252,252,252); /* @kind color */
+  --icon-default-default-2: var(--white-1000); /* @kind color */
+  --icon-default-default: var(--white-1000); /* @kind color */
+  --labels-primary: rgb(255,255,255); /* @kind color */
+  --labels-primary: rgb(255,255,255); /* @kind color */
+  --miscellaneous-alert-menu-action-sheet-separators: rgba(128,128,128,0.7); /* @kind color */
+  --miscellaneous-alert-menu-action-sheet-separators: rgba(128,128,128,0.7); /* @kind color */
+  --miscellaneous-kit-section-fill: rgb(245,245,245); /* @kind color */
+  --miscellaneous-kit-section-fill: rgb(245,245,245); /* @kind color */
+  --miscellaneous-menu-large-separator: rgba(0,0,0,0.16); /* @kind color */
+  --miscellaneous-menu-large-separator: rgba(0,0,0,0.16); /* @kind color */
+  --mode: "Dark Elevated"; /* @kind other */
+  --mode: "Dark"; /* @kind other */
+  --red: rgb(224,7,0); /* @kind color */
+  --white-2: rgb(255,255,255); /* @kind color */
+  --white-3: rgb(255,255,255); /* @kind color */
+}
+
+:root[data-theme="light"], .light {
+  --background-brand-default: var(--brand-b-800); /* @kind color */
+  --colors-red-2: rgb(233,21,45); /* @kind color */
+  --grays-gray-4: rgb(209,209,213); /* @kind color */
+  --icon-default-default-2: var(--gray-900); /* @kind color */
+}

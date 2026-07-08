@@ -1,0 +1,9 @@
+# Local Postgres backup dumps -- may contain real customer lead data once the
+# site is live; never commit these.
+supabase-local/backups/
+
+# Local environment/secret files (none exist yet, but reserved for when a real
+# payment/shipping provider or non-local Supabase project is wired up).
+.env
+.env.*
+!.env.example

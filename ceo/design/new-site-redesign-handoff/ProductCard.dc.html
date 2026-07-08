@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/tidhar-app-design-system-84bc9daf-2d4d-488f-86a8-e9b33f930d73/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/tidhar-app-design-system-84bc9daf-2d4d-488f-86a8-e9b33f930d73/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/tidhar-app-design-system-84bc9daf-2d4d-488f-86a8-e9b33f930d73/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/tidhar-app-design-system-84bc9daf-2d4d-488f-86a8-e9b33f930d73/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/tidhar-app-design-system-84bc9daf-2d4d-488f-86a8-e9b33f930d73/tokens/base.css">
+  <link rel="stylesheet" href="_ds/tidhar-app-design-system-84bc9daf-2d4d-488f-86a8-e9b33f930d73/styles.css">
+  <script src="_ds/tidhar-app-design-system-84bc9daf-2d4d-488f-86a8-e9b33f930d73/_ds_bundle.js"></script>
+  <script src="image-slot.js"></script>
+  <style>
+    /* Fire &amp; heat theme — matches the site's token overrides */
+    :root {
+      --tid-green-900: #A62B12;
+      --tid-green-800: #7C1E0B;
+      --tid-teal-700:  #571F10;
+      --tid-green-600: #E2691F;
+      --tid-green-500: #E8853B;
+      --tid-green-tint:#FBEAE0;
+      --tid-success:    #A62B12;
+      --tid-success-bg: rgba(226,105,31,0.14);
+    }
+  </style>
+</helmet>
+<div dir="rtl" style="background:var(--tid-white);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);overflow:hidden;display:flex;flex-direction:column;height:100%;transition:box-shadow .15s ease, transform .15s ease" style-hover="box-shadow:0 14px 34px rgba(0,11,21,.11); transform:translateY(-3px)">
+  <div onClick="{{ onView }}" style="position:relative;cursor:pointer;aspect-ratio:4 / 3;background:var(--tid-grey-75)">
+    <image-slot id="{{ imageId }}" style="position:absolute;inset:0;width:100%;height:100%" shape="rect" placeholder="תמונת מוצר"></image-slot>
+    <sc-if value="{{ hasBadge }}" hint-placeholder-val="{{ false }}">
+      <span style="position:absolute;top:12px;inset-inline-start:12px;background:var(--tid-green-900);color:var(--tid-white);font:var(--fw-bold) 12px/1 var(--font-sans);padding:6px 12px;border-radius:var(--radius-pill)">{{ badge }}</span>
+    </sc-if>
+  </div>
+  <div style="padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1">
+    <span style="font:var(--fw-regular) 12px/1 var(--font-sans);color:var(--text-tertiary)">{{ catLabel }}</span>
+    <h3 onClick="{{ onView }}" style="font:var(--fw-bold) 17px/1.28 var(--font-sans);color:var(--text-primary);margin:0;cursor:pointer;min-height:44px">{{ title }}</h3>
+    <div style="margin-top:auto;padding:10px 0 12px">
+      <span style="font:var(--fw-black) 21px/1 var(--font-sans);color:var(--tid-green-900)">{{ priceLabel }}</span>
+    </div>
+    <x-import component-from-global-scope="TidharAppDesignSystem_84bc9d.Button" color="{{ pt }}" size="sm" block="{{ true }}" onClick="{{ onAdd }}" hint-size="100%,33px">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"></circle><circle cx="18" cy="20" r="1.3"></circle><path d="M2.5 3.5h2.4l2.1 11.6a1.4 1.4 0 0 0 1.4 1.15h8.4a1.4 1.4 0 0 0 1.4-1.1L20.5 7.2H5.3"></path></svg>
+      הוספה לסל
+    </x-import>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

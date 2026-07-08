@@ -1,0 +1,36 @@
+/* ── Tidhar App — Webfonts ────────────────────────────────────────────
+   The brand's primary face is "Almoni DL AAA" (a commercial Hebrew sans by
+   Masterfont), with "Assistant" used as a secondary UI face. Almoni is not
+   freely distributable, so we substitute Google's "Assistant" — a geometric
+   humanist Hebrew/Latin sans with very close proportions — across the whole
+   system. Replace with the licensed Almoni webfont files for production.
+   ------------------------------------------------------------------------ */
+
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;500;700;800&display=swap');
+
+/* Map the real brand family names onto the substitute so any component or
+   copied Figma code that asks for "Almoni DL AAA" still renders in Assistant. */
+@font-face {
+  font-family: "Almoni DL AAA";
+  src: local("Assistant");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Almoni DL AAA";
+  src: local("Assistant SemiBold"), local("Assistant");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Almoni DL AAA";
+  src: local("Assistant Bold"), local("Assistant");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Almoni DL AAA";
+  src: local("Assistant ExtraBold"), local("Assistant");
+  font-weight: 800;
+  font-display: swap;
+}

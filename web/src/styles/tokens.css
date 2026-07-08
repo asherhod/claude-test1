@@ -1,0 +1,62 @@
+/* tokens.css -- "Fire & Heat" design tokens, per
+   ceo/design/new-site-redesign-handoff/README.md "Design Tokens" section.
+   Shared across every component-scoped CSS file in this app. */
+
+:root {
+  /* Colors */
+  --ember: #A62B12;          /* primary action / links / footer / badges */
+  --ember-deep: #7C1E0B;     /* deep text on warm tint */
+  --umber: #571F10;          /* hero + logo surface */
+  --flame: #E2691F;          /* mid accent */
+  --flame-soft: #E8853B;     /* soft accent */
+  --warm-fill: #FBEAE0;      /* pale warm fill */
+  --success-bg: rgba(226, 105, 31, 0.14);
+  --amber: #FFB548;
+  --gold: #F4B85D;
+  --coral: #E53E51;          /* cart badge */
+  --sky: #96B7E5;
+
+  --ink: #000B15;
+  --text-secondary: #525862;
+  --text-tertiary: #717171;
+  --border: #D1D5DB;
+  --hairline: #EBEBEB;
+  --bg-app: #F0F0F1;
+  --bg-section: #F5F5F5;
+  --bg-section-2: #F7F7F7;
+  --white: #FFFFFF;
+  --grey-75: #EDEDEE; /* image-placeholder tint, close to the design's grey-75 */
+
+  /* Typography */
+  --font-sans: 'Assistant', system-ui, sans-serif;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  /* Spacing (4px base scale) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+
+  --content-max: 1200px;
+  --gutter: 24px;
+
+  /* Radii */
+  --radius-card: 16px;
+  --radius-sheet: 24px;
+  --radius-input: 8px;
+  --radius-tile: 12px;
+  --radius-pill: 200px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 11, 21, 0.06);
+  --shadow-cta: 0 4px 8px rgba(0, 0, 0, 0.16);
+  --shadow-card-hover: 0 14px 34px rgba(0, 11, 21, 0.11);
+}

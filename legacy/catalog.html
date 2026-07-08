@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0E0D0B" />
+  <meta name="description" content="קטלוג המוצרים של מנגליסט — מנגלי גז וציוד נלווה. סננו לפי מותג, קטגוריה, מחיר וזמינות." />
+  <title>קטלוג מוצרים — מנגליסט</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800;900&family=Assistant:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Same CDN supabase-js client + local config pattern as index.html. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">דילוג לתוכן הראשי</a>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="index.html" class="logo">מנגליסט</a>
+      <button class="nav-toggle" aria-label="פתיחת/סגירת ניווט" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="catalog.html" class="is-current">קטלוג</a></li>
+        <li><a href="index.html#about">אודות</a></li>
+        <li><a href="index.html#contact" class="nav-cta">צור קשר</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" class="catalog-page">
+    <section class="catalog-hero">
+      <span class="idx idx-center">קטלוג</span>
+      <h1>קטלוג מוצרים</h1>
+      <p>סננו לפי קטגוריה, מותג, טווח מחיר וזמינות, או חפשו מוצר לפי שם.</p>
+    </section>
+
+    <section class="catalog-layout">
+      <aside class="catalog-filters" aria-label="סינון מוצרים">
+        <div class="filter-group">
+          <label for="filter-search">חיפוש</label>
+          <input type="search" id="filter-search" placeholder="חיפוש מוצר..." autocomplete="off" />
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-category">קטגוריה</label>
+          <select id="filter-category">
+            <option value="">כל הקטגוריות</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-brand">מותג</label>
+          <select id="filter-brand">
+            <option value="">כל המותגים</option>
+          </select>
+        </div>
+
+        <div class="filter-group filter-group-price">
+          <label for="filter-price-min">טווח מחיר (₪)</label>
+          <div class="filter-price-inputs">
+            <input type="number" id="filter-price-min" placeholder="מ-" min="0" inputmode="numeric" />
+            <span aria-hidden="true">—</span>
+            <input type="number" id="filter-price-max" placeholder="עד" min="0" inputmode="numeric" />
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-stock">זמינות</label>
+          <select id="filter-stock">
+            <option value="">כל הזמינויות</option>
+            <option value="in_stock">זמין להזמנה</option>
+            <option value="preorder">בהזמנה מראש</option>
+            <option value="unknown">זמינות לפי בירור</option>
+            <option value="out_of_stock">אזל מהמלאי</option>
+            <option value="discontinued">הופסק</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-sort">מיון</label>
+          <select id="filter-sort">
+            <option value="name_asc">שם: א-ת</option>
+            <option value="price_asc">מחיר: מהזול ליקר</option>
+            <option value="price_desc">מחיר: מהיקר לזול</option>
+          </select>
+        </div>
+
+        <button type="button" id="filter-clear" class="btn btn-secondary filter-clear-btn">נקו מסננים</button>
+      </aside>
+
+      <div class="catalog-results">
+        <div class="catalog-results-bar">
+          <p id="catalog-result-count" class="catalog-result-count" role="status"></p>
+        </div>
+
+        <div id="catalog-grid" class="catalog-grid"></div>
+
+        <p id="catalog-empty" class="catalog-empty" hidden>לא נמצאו מוצרים התואמים לסינון הנוכחי.</p>
+        <p id="catalog-loading" class="catalog-empty">טוען מוצרים...</p>
+        <p id="catalog-error" class="catalog-empty catalog-error" hidden>
+          שגיאה בטעינת הקטלוג. ודאו שהשרת המקומי פעיל ונסו שוב, או
+          <a href="index.html#contact">צרו קשר</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 מנגליסט. כל הזכויות שמורות.</p>
+  </footer>
+
+  <script src="supabase-config.js"></script>
+  <script src="catalog-shared.js"></script>
+  <script src="catalog.js"></script>
+</body>
+</html>

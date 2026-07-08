@@ -1,0 +1,68 @@
+/* ── Tidhar App — Color tokens ────────────────────────────────────────
+   Values transcribed verbatim from the Figma source (UI KIT frame + real
+   component fills). The brand is built on two greens — a deep forest green
+   for primary actions and a muted teal for surfaces/logo — over warm-neutral
+   greys, with a soft-tint semantic system for status tags.
+   ---------------------------------------------------------------------- */
+
+:root {
+  /* ---- Brand greens ---- */
+  --tid-green-900: #004434;   /* primary action / chips / links (rgb 0,68,52) */
+  --tid-green-800: #023423;   /* deep green text on light */
+  --tid-teal-700:  #255454;   /* "Main blue" — logo bg, secondary action (rgb 37,84,84) */
+  --tid-green-600: #4A9462;   /* dominant mid-green accent (rgb 74,148,98) */
+  --tid-green-500: #5E9267;   /* softer green accent (rgb 94,146,103) */
+  --tid-green-tint:#E5EEE7;   /* pale green fill / disabled-on-green */
+
+  /* ---- Ink & neutrals ---- */
+  --tid-ink:        #000B15;  /* primary text (rgb 0,11,21) */
+  --tid-black:      #191919;  /* basic black */
+  --tid-grey-700:   #525862;  /* secondary text (rgb 82,88,98) */
+  --tid-grey-500:   #717171;  /* tertiary / placeholder text */
+  --tid-grey-400:   #AAACB1;  /* disabled text */
+  --tid-grey-300:   #D1D5DB;  /* borders / hairlines */
+  --tid-grey-200:   #E4EBEA;  /* disabled surface */
+  --tid-grey-150:   #EBEBEB;  /* dividers */
+  --tid-grey-100:   #F0F0F1;  /* app background */
+  --tid-grey-75:    #F5F5F5;  /* section fill */
+  --tid-grey-50:    #F7F7F7;  /* subtle fill */
+  --tid-white:      #FFFFFF;
+
+  /* ---- Accents (from logo isometric mark) ---- */
+  --tid-amber:      #FFB548;  /* logo roof accent (rgb 255,181,72) */
+  --tid-gold:       #F4B85D;  /* warm gold */
+  --tid-coral:      #E53E51;  /* logo accent red (rgb 229,62,81) */
+  --tid-sky:        #96B7E5;  /* light-blue tag base */
+
+  /* ---- Semantic: status tags (soft tint bg + saturated text) ---- */
+  --tid-danger:        #D54D56;
+  --tid-danger-strong: #A8141E;
+  --tid-danger-bg:     rgba(213,77,86,0.12);
+  --tid-danger-bg-solid:#F8E3E4;
+
+  --tid-warning:       #5F452A;
+  --tid-warning-accent:#F4B85D;
+  --tid-warning-bg:    #FDF4E5;
+
+  --tid-info:          #1371D7;
+  --tid-info-bg:       #E3EDF8;
+
+  --tid-success:       #004434;
+  --tid-success-bg:    rgba(94,146,103,0.12);
+
+  /* ---- Semantic aliases ---- */
+  --color-bg-app:        var(--tid-grey-100);
+  --color-bg-section:    var(--tid-grey-75);
+  --surface-card:        var(--tid-white);
+  --surface-sunken:      var(--tid-grey-75);
+  --text-primary:        var(--tid-ink);
+  --text-secondary:      var(--tid-grey-700);
+  --text-tertiary:       var(--tid-grey-500);
+  --text-on-brand:       var(--tid-white);
+  --text-link:           var(--tid-green-900);
+  --action-primary:      var(--tid-green-900);
+  --action-secondary:    var(--tid-teal-700);
+  --border-default:      var(--tid-grey-300);
+  --border-subtle:       var(--tid-grey-150);
+  --focus-ring:          #000000;
+}
